@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phan Lê Ngọc Vy — English Language Educator & Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1614;
+      --ink-muted: #5a534e;
+      --ink-light: #9c948e;
+      --paper: #faf8f5;
+      --paper-warm: #f2ede6;
+      --paper-mid: #e8e1d8;
+      --accent: #6b4f8a;
+      --accent-light: #9b7fba;
+      --accent-pale: #ede7f6;
+      --border: rgba(26,22,20,0.1);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,248,245,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HAMBURGER ─── */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 4rem;
+      flex-direction: column; gap: 1.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-muted); text-decoration: none; font-weight: 400;
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      padding: 120px 4rem 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+    }
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 10% 50%, rgba(107,79,138,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 90% 20%, rgba(107,79,138,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-left { position: relative; }
+    .hero-photo-wrap {
+      position: relative;
+      width: 280px;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px -12px 12px 12px;
+      border: 1px solid var(--accent-light);
+      opacity: 0.4;
+      border-radius: 2px;
+    }
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: grayscale(15%) contrast(1.02);
+    }
+    .hero-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, var(--paper-warm) 0%, var(--paper-mid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 4rem; color: var(--ink-light);
+    }
+    .hero-badges {
+      margin-top: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-family: var(--mono);
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+    .badge::before { content: '—'; color: var(--accent-light); }
+    .hero-right {}
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.01em;
+    }
+    .hero-divider {
+      width: 48px; height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0.5;
+    }
+    .hero-intro {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-intro .quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--ink);
+      display: block;
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--accent-light);
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-bottom: 2.5rem;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 0.2rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.75rem 1.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--ink-muted);
+      padding: 0.75rem 1.75rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 100px 4rem; }
+    .section-header { margin-bottom: 4rem; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; max-width: 48px;
+      height: 1px; background: var(--accent);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      margin-top: 0.75rem;
+      max-width: 600px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--paper-warm); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--ink-muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+    .about-text p:first-child {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .about-right { }
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .credential-card {
+      background: var(--paper);
+      padding: 1.5rem;
+    }
+    .cred-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .cred-label {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+    .expertise-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-pale);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    /* ─── RESEARCH ─── */
+    #research { background: var(--paper); }
+    .research-feature {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3rem;
+      border-radius: 2px;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .research-feature::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent-light);
+    }
+    .research-feature-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+    .research-feature-title {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: var(--paper);
+    }
+    .research-feature-desc {
+      font-size: 0.92rem;
+      color: rgba(250,248,245,0.6);
+      max-width: 700px;
+      line-height: 1.75;
+    }
+    .rq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .rq-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 2px;
+      position: relative;
+    }
+    .rq-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .rq-text {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .method-card {
+      background: var(--paper-warm);
+      padding: 1.75rem;
+      border-radius: 2px;
+    }
+    .method-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .method-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .method-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+    .interests-grid {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .interest-tag {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      background: var(--paper-warm);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      font-style: italic;
+      font-family: var(--serif);
+    }
+
+    /* ─── TEACHING ─── */
+    #teaching { background: var(--paper-warm); }
+    .teaching-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .philosophy-block {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--ink-muted);
+      padding: 2rem;
+      border-left: 2px solid var(--accent-light);
+      background: rgba(107,79,138,0.03);
+      margin-bottom: 2rem;
+    }
+    .philosophy-block p { margin-bottom: 1rem; }
+    .philosophy-block p:last-child { margin-bottom: 0; }
+    .teaching-right { }
+    .teaching-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .t-stat {
+      background: var(--paper);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+    .t-stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .t-stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 0.2rem;
+    }
+    .experience-list { }
+    .exp-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-label {
+      font-size: 0.68rem;
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .exp-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+    .subjects-wrap {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--border);
+    }
+    .subjects-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1rem;
+    }
+    .subjects-text {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--paper); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 2px;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .project-card-top {
+      background: var(--paper-warm);
+      padding: 2.5rem;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .project-card-top.dark {
+      background: var(--ink);
+    }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+    .project-card-top.dark .project-tag { color: rgba(155,127,186,0.9); }
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .project-card-top.dark .project-title { color: var(--paper); }
+    .project-body {
+      padding: 1.75rem 2.5rem;
+      background: var(--paper);
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .project-link {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.7rem; }
+    .project-link::after { content: '→'; }
+
+    /* ─── BLOG ─── */
+    #blog { background: var(--paper-warm); }
+    .blog-intro {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      max-width: 640px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .blog-placeholder {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .blog-card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 2px;
+      transition: transform 0.2s;
+    }
+    .blog-card:hover { transform: translateY(-2px); }
+    .blog-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .blog-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+    .blog-excerpt {
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+    .blog-coming-soon {
+      border: 1px dashed var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 2px;
+    }
+    .blog-coming-soon p {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink-light);
+      font-size: 1rem;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--paper); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+    .contact-intro {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-channels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--paper-warm);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+      display: block;
+    }
+    .contact-card:hover { border-color: var(--accent-light); transform: translateY(-2px); }
+    .contact-type {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .contact-value {
+      font-size: 0.83rem;
+      color: var(--ink);
+      word-break: break-word;
+    }
+    .open-for {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+    .open-for-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 0.75rem;
+    }
+    .open-for-items {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .open-item {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+    }
+    .contact-right {
+      padding: 3rem;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-right-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: rgba(250,248,245,0.85);
+      margin-bottom: 2rem;
+    }
+    .contact-right-info {
+      font-size: 0.83rem;
+      color: rgba(250,248,245,0.45);
+      line-height: 1.7;
+    }
+    .response-note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      border-left: 2px solid var(--accent-light);
+      font-size: 0.82rem;
+      color: rgba(250,248,245,0.6);
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(250,248,245,0.4);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    footer a { color: rgba(250,248,245,0.4); text-decoration: none; }
+
+    /* ─── FADE IN ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 2rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      section { padding: 80px 2rem; }
+      #home { grid-template-columns: 1fr; padding: 100px 2rem 60px; gap: 3rem; }
+      .hero-photo-wrap { width: 200px; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .rq-grid { grid-template-columns: 1fr; }
+      .method-grid { grid-template-columns: 1fr; }
+      .teaching-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .blog-placeholder { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-channels { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+      .mobile-menu { padding: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1.5rem; }
+      .credentials-grid { grid-template-columns: 1fr 1fr; }
+      .teaching-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#home">Phan Lê Ngọc Vy</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobileMenu()">Home</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#research" onclick="closeMobileMenu()">Research</a>
+    <a href="#teaching" onclick="closeMobileMenu()">Teaching</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#blog" onclick="closeMobileMenu()">Blog</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-left fade-in">
+      <div class="hero-photo-wrap">
+        <!-- Replace with your actual photo: <img class="hero-photo" src="photo.jpg" alt="Phan Lê Ngọc Vy"> -->
+        <div class="hero-photo-placeholder">✦</div>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">Based in Vietnam</span>
+        <span class="badge">Open to collaboration</span>
+        <span class="badge">EdD Candidate · Edgewood University</span>
+      </div>
+    </div>
+    <div class="hero-right fade-in">
+      <p class="hero-eyebrow">English Language Educator &amp; Researcher</p>
+      <h1 class="hero-name">Phan Lê<br><em>Ngọc Vy</em></h1>
+      <p class="hero-title">Educator · Doctoral Candidate · Lifelong Learner</p>
+      <div class="hero-divider"></div>
+      <div class="hero-intro">
+        <span class="quote">"What does it really take for someone to learn — and keep learning?"</span>
+        My journey in education began with this question. With over 15 years of teaching English and a decade specialising in IELTS, I am now a doctoral researcher exploring the integration of AI into writing instruction.
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years Teaching</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years IELTS</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">MA</div>
+          <div class="stat-label">Ling. · EdD Cand.</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#research" class="btn-primary">View Research</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header fade-in">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Educator, Researcher,<br>Lifelong Learner</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I believe that education is not merely the transfer of knowledge — it is the cultivation of curiosity, resilience, and the lifelong desire to grow.</p>
+        <p>Over 15 years of teaching English, and a decade specialising in IELTS preparation, I have worked with learners from all walks of life — school students finding their voice, university undergraduates navigating academic English for the first time, and working professionals who need the language to open the next door in their careers. Each of them has taught me as much as I have taught them.</p>
+        <p>That curiosity about learning eventually led me to research. I hold a Master's degree in English Linguistics, and I am currently a Doctoral Candidate in Education at Edgewood University. My research sits at an intersection I find genuinely exciting: the integration of Artificial Intelligence into Writing instruction — and what that reveals about how we should design pedagogy when technology enters the language classroom.</p>
+        <p>Beyond the classroom and the research desk, I am the founder of <em>The Becoming Learners</em> — a bilingual YouTube channel where I share reflections on education, language learning, and the ongoing process of growth. Because good ideas about learning should not be locked behind a language barrier.</p>
+      </div>
+      <div class="about-right fade-in">
+        <div class="credentials-grid">
+          <div class="credential-card">
+            <div class="cred-num">15+</div>
+            <div class="cred-label">Years teaching English</div>
+          </div>
+          <div class="credential-card">
+            <div class="cred-num">10+</div>
+            <div class="cred-label">Years IELTS specialist</div>
+          </div>
+          <div class="credential-card">
+            <div class="cred-num">MA</div>
+            <div class="cred-label">English Linguistics</div>
+          </div>
+          <div class="credential-card">
+            <div class="cred-num">EdD</div>
+            <div class="cred-label">Doctoral Cand. · Edgewood Uni.</div>
+          </div>
+        </div>
+        <div class="expertise-tags">
+          <span class="tag">English Language Teaching</span>
+          <span class="tag">IELTS Preparation</span>
+          <span class="tag">Academic Writing</span>
+          <span class="tag">Language Pedagogy</span>
+          <span class="tag">Lifelong Learning</span>
+          <span class="tag">Bilingual Education</span>
+          <span class="tag">Curriculum Design</span>
+          <span class="tag">Educational Research</span>
+          <span class="tag">AI in Education</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-header fade-in">
+      <div class="section-label">Research</div>
+      <h2 class="section-title">Doctoral Research</h2>
+      <p class="section-subtitle">My research sits at the intersection of language education, artificial intelligence, and cognitive development.</p>
+    </div>
+
+    <div class="research-feature fade-in">
+      <div class="research-feature-label">Edgewood University · Doctoral Programme in Education</div>
+      <h3 class="research-feature-title">The Integration of AI into English Writing Instruction: Exploring Critical and Creative Thinking in Asynchronous Online Learning</h3>
+      <p class="research-feature-desc">This research investigates how AI tools shape the emergence and development of critical and creative thinking in learners engaged in English Writing tasks — specifically within asynchronous online learning environments delivered through a Learning Management System (LMS).</p>
+    </div>
+
+    <div class="rq-grid fade-in">
+      <div class="rq-card">
+        <div class="rq-num">RQ 01</div>
+        <p class="rq-text">How do critical and creative thinking emerge and develop in the process of AI-assisted English Writing in asynchronous online learning?</p>
+      </div>
+      <div class="rq-card">
+        <div class="rq-num">RQ 02</div>
+        <p class="rq-text">What role does the asynchronous LMS environment play in shaping learner cognitive engagement with AI writing tools?</p>
+      </div>
+      <div class="rq-card">
+        <div class="rq-num">RQ 03</div>
+        <p class="rq-text">What pedagogical design principles best support meaningful thinking development when AI is integrated into the writing classroom?</p>
+      </div>
+    </div>
+
+    <div class="method-grid fade-in">
+      <div class="method-card">
+        <div class="method-icon">📄</div>
+        <div class="method-title">Qualitative &amp; Mixed-Methods</div>
+        <div class="method-desc">Think-aloud protocols, reflective journals, and learner writing samples analysed for evidence of critical and creative thinking processes.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">💻</div>
+        <div class="method-title">LMS Interaction Data</div>
+        <div class="method-desc">Analysis of learner behaviour within asynchronous online environments — tracking engagement patterns, AI usage, and writing development over time.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">👤</div>
+        <div class="method-title">Learner-Centred Design</div>
+        <div class="method-desc">Real learners in real online learning contexts — prioritising ecological validity and practical applicability alongside academic rigour.</div>
+      </div>
+      <div class="method-card">
+        <div class="method-icon">⏱</div>
+        <div class="method-title">Longitudinal Approach</div>
+        <div class="method-desc">Tracking the development of thinking processes across multiple writing tasks and time points to capture change and growth over the course of the study.</div>
+      </div>
+    </div>
+
+    <div class="section-header fade-in" style="margin-bottom: 1.5rem;">
+      <div class="section-label">Research Interests</div>
+    </div>
+    <div class="interests-grid fade-in" style="margin-bottom: 3rem;">
+      <span class="interest-tag">Asynchronous Online Learning</span>
+      <span class="interest-tag">LMS Environments</span>
+      <span class="interest-tag">Critical Thinking</span>
+      <span class="interest-tag">Creative Thinking</span>
+      <span class="interest-tag">Second Language Acquisition</span>
+      <span class="interest-tag">Writing Pedagogy</span>
+      <span class="interest-tag">AI in Language Education</span>
+      <span class="interest-tag">Instructional Design</span>
+    </div>
+
+    <div class="research-feature fade-in" style="background: var(--accent-pale); color: var(--ink);">
+      <div class="research-feature-label" style="color: var(--accent);">The Bigger Picture</div>
+      <h3 class="research-feature-title" style="color: var(--ink); font-size: 1.2rem;">AI is already in our classrooms — not as a future possibility, but as a present reality that learners navigate every day. The question is no longer whether to engage with it, but how to do so in ways that deepen rather than diminish human thinking.</h3>
+      <p class="research-feature-desc" style="color: var(--ink-muted);">This research aims to contribute a principled, evidence-based answer — one that serves both educators designing courses and learners trying to grow. <em>Research in progress · Findings will be shared as the work develops.</em></p>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="section-header fade-in">
+      <div class="section-label">Teaching</div>
+      <h2 class="section-title">Learner-Centred<br>Practice</h2>
+      <p class="section-subtitle">Teaching, for me, has never been simply about content delivery. It is about building the conditions in which learners can grow.</p>
+    </div>
+    <div class="teaching-layout">
+      <div class="fade-in">
+        <div class="philosophy-block">
+          <p>I believe that every learner has the capacity to acquire language when given the right environment, tools, and encouragement. My approach is learner-centred — I begin by understanding who my students are, what they already know, and where they want to go.</p>
+          <p>For IELTS preparation, I do not teach to the test alone. I teach learners to think critically, communicate clearly, and engage confidently with academic and professional English. The exam score is a milestone, not the destination.</p>
+          <p>I draw on research in second language acquisition, cognitive psychology, and reflective practice to continually refine my methods — ensuring that what I bring into the classroom is grounded in both theory and lived experience.</p>
+        </div>
+        <div class="subjects-wrap">
+          <div class="subjects-label">Subjects &amp; Skills</div>
+          <div class="subjects-text">Academic English Writing · IELTS All Skills · Business English · Pronunciation &amp; Fluency · Grammar in Context · Critical Thinking · Curriculum Design · Learner-Centred Pedagogy</div>
+        </div>
+      </div>
+      <div class="teaching-right fade-in">
+        <div class="teaching-stats">
+          <div class="t-stat">
+            <div class="t-stat-num">15+</div>
+            <div class="t-stat-label">Years Teaching</div>
+          </div>
+          <div class="t-stat">
+            <div class="t-stat-num">10+</div>
+            <div class="t-stat-label">Years IELTS</div>
+          </div>
+          <div class="t-stat">
+            <div class="t-stat-num">6.0–8.0</div>
+            <div class="t-stat-label">Target Bands</div>
+          </div>
+        </div>
+        <div class="experience-list">
+          <div class="exp-item">
+            <div class="exp-label">English Language Teaching</div>
+            <div class="exp-title">All Proficiency Levels</div>
+            <div class="exp-desc">Beginner to advanced. Language centres, universities, and corporate training contexts. 15+ years across diverse learner groups.</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-label">IELTS Preparation</div>
+            <div class="exp-title">All Four Skills · 10+ Years</div>
+            <div class="exp-desc">Average 1.0–1.5 band improvement per course. Target scores 6.0–8.0 across all learner groups.</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-label">Learner Groups</div>
+            <div class="exp-title">School to Professional</div>
+            <div class="exp-desc">School students, university undergraduates, postgraduates, and working professionals across diverse industries.</div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-label">Knowledge Horizon</div>
+            <div class="exp-title">Founder &amp; Lead Educator</div>
+            <div class="exp-desc">An English language centre dedicated to meaningful, rigorous, and lasting language learning — not just exam-focused.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header fade-in">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Beyond the Classroom</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-in">
+        <div class="project-card-top dark">
+          <div>
+            <div class="project-tag">YouTube · Bilingual Channel</div>
+            <h3 class="project-title">The Becoming Learners</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">A bilingual YouTube channel sharing reflections on education, academic life, and the ongoing process of learning itself. Videos presented in English with Vietnamese subtitles — because good ideas about learning should not be locked behind a language barrier.</p>
+          <a href="https://www.youtube.com/@TheBecomingLearners" target="_blank" class="project-link">Visit Channel</a>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-card-top">
+          <div>
+            <div class="project-tag">Education Centre · Founder</div>
+            <h3 class="project-title" style="color: var(--ink);">Knowledge Horizon</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">An English language centre serving school students, university learners, and working professionals. Built on the belief that language learning should be meaningful, rigorous, and lasting — grounded in one belief: real communicative competence over exam scores alone.</p>
+          <a href="https://www.youtube.com/@KnowledgeHorizonPV" target="_blank" class="project-link">Visit Channel</a>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-card-top">
+          <div>
+            <div class="project-tag">Doctoral Research · In Progress</div>
+            <h3 class="project-title" style="color: var(--ink);">AI &amp; Writing Instruction</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Doctoral research at Edgewood University investigating how AI tools can illuminate learners' thinking processes and inform more effective pedagogical design for the language classroom. Findings to be shared as the work develops.</p>
+          <a href="#research" class="project-link">Read More</a>
+        </div>
+      </div>
+      <div class="project-card fade-in">
+        <div class="project-card-top dark">
+          <div>
+            <div class="project-tag">Academic · Profile</div>
+            <h3 class="project-title">ResearchGate Profile</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Academic publications and research profile on ResearchGate. Follow my work on AI in language education, writing pedagogy, and second language acquisition research.</p>
+          <span class="project-link" style="cursor: default; opacity: 0.5;">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="section-header fade-in">
+      <div class="section-label">Blog</div>
+      <h2 class="section-title">Reflections &amp; Writing</h2>
+    </div>
+    <p class="blog-intro fade-in">Thoughts on education, language learning, research, and the ongoing process of becoming — written for anyone curious about how we learn and grow.</p>
+    <div class="blog-coming-soon fade-in">
+      <p>Blog posts coming soon — follow <a href="https://www.youtube.com/@TheBecomingLearners" target="_blank" style="color: var(--accent); text-decoration: none;">The Becoming Learners</a> on YouTube for reflections in the meantime.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header fade-in">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's Connect</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="contact-intro">I would love to connect — whether you are a learner, a fellow educator, a researcher, or someone curious about collaboration. Please reach out through any of the channels below.</p>
+        <div class="contact-channels">
+          <a class="contact-card" href="mailto:thebecominglearners@gmail.com">
+            <div class="contact-type">Primary Email</div>
+            <div class="contact-value">thebecominglearners@gmail.com</div>
+          </a>
+          <a class="contact-card" href="mailto:phanvyedu@gmail.com">
+            <div class="contact-type">Secondary Email</div>
+            <div class="contact-value">phanvyedu@gmail.com</div>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/phan-vy-0b090234b/" target="_blank">
+            <div class="contact-type">LinkedIn</div>
+            <div class="contact-value">Phan Vy — Professional Profile</div>
+          </a>
+          <a class="contact-card" href="https://www.youtube.com/@TheBecomingLearners" target="_blank">
+            <div class="contact-type">YouTube</div>
+            <div class="contact-value">The Becoming Learners</div>
+          </a>
+        </div>
+        <div class="open-for">
+          <div class="open-for-label">Open For</div>
+          <div class="open-for-items">
+            <span class="open-item">IELTS Consulting</span>
+            <span class="open-item">One-on-one Tutoring</span>
+            <span class="open-item">Academic English Coaching</span>
+            <span class="open-item">Research Collaboration</span>
+            <span class="open-item">Speaking Invitations</span>
+            <span class="open-item">YouTube Partnerships</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right fade-in">
+        <p class="contact-right-quote">"Thank you for visiting my portfolio. I look forward to connecting with you."</p>
+        <p class="contact-right-info">
+          Based in Vietnam · English Language Educator &amp; Researcher<br>
+          Doctoral Candidate in Education · Edgewood University<br>
+          Founder of Knowledge Horizon &amp; The Becoming Learners
+        </p>
+        <div class="response-note">
+          I aim to respond to all messages within 2–3 business days. For urgent inquiries, please indicate this in your subject line.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Phan Lê Ngọc Vy</span>
+    <span>English Language Educator &amp; Researcher · Vietnam</span>
+    <span><a href="mailto:thebecominglearners@gmail.com">thebecominglearners@gmail.com</a></span>
+  </footer>
+
+  <script>
+    // Nav toggle
+    const toggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      toggle.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
