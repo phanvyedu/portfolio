@@ -608,63 +608,6 @@
     .project-link:hover { gap: 0.7rem; }
     .project-link::after { content: '→'; }
 
-    /* ─── BLOG ─── */
-    #blog { background: var(--paper-warm); }
-    .blog-intro {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--ink-muted);
-      max-width: 640px;
-      margin-bottom: 3rem;
-      line-height: 1.75;
-    }
-    .blog-placeholder {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .blog-card {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      border-radius: 2px;
-      transition: transform 0.2s;
-    }
-    .blog-card:hover { transform: translateY(-2px); }
-    .blog-date {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--ink-light);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-    }
-    .blog-title {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.4;
-      margin-bottom: 0.75rem;
-    }
-    .blog-excerpt {
-      font-size: 0.83rem;
-      color: var(--ink-muted);
-      line-height: 1.65;
-    }
-    .blog-coming-soon {
-      border: 1px dashed var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-      border-radius: 2px;
-    }
-    .blog-coming-soon p {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--ink-light);
-      font-size: 1rem;
-    }
-
     /* ─── CONTACT ─── */
     #contact { background: var(--paper); }
     .contact-grid {
@@ -828,7 +771,6 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#teaching">Teaching</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -843,7 +785,6 @@
     <a href="#research" onclick="closeMobileMenu()">Research</a>
     <a href="#teaching" onclick="closeMobileMenu()">Teaching</a>
     <a href="#projects" onclick="closeMobileMenu()">Projects</a>
-    <a href="#blog" onclick="closeMobileMenu()">Blog</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
 
@@ -852,7 +793,7 @@
     <div class="hero-left fade-in">
       <div class="hero-photo-wrap">
         <!-- Replace with your actual photo: <img class="hero-photo" src="photo.jpg" alt="Phan Lê Ngọc Vy"> -->
-        <img class="hero-photo" src="photo.jpg" alt="Phan Lê Ngọc Vy">
+        <div class="hero-photo-placeholder">✦</div>
       </div>
       <div class="hero-badges">
         <span class="badge">Based in Vietnam</span>
@@ -1125,18 +1066,6 @@
           <span class="project-link" style="cursor: default; opacity: 0.5;">Coming Soon</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- BLOG -->
-  <section id="blog">
-    <div class="section-header fade-in">
-      <div class="section-label">Blog</div>
-      <h2 class="section-title">Reflections &amp; Writing</h2>
-    </div>
-    <p class="blog-intro fade-in">Thoughts on education, language learning, research, and the ongoing process of becoming — written for anyone curious about how we learn and grow.</p>
-    <div class="blog-coming-soon fade-in">
-      <p>Blog posts coming soon — follow <a href="https://www.youtube.com/@TheBecomingLearners" target="_blank" style="color: var(--accent); text-decoration: none;">The Becoming Learners</a> on YouTube for reflections in the meantime.</p>
     </div>
   </section>
 
